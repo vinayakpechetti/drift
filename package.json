@@ -5,11 +5,41 @@
   "main": "main.js",
   "scripts": {
     "build:renderer": "esbuild renderer.js --bundle --format=iife --platform=browser --outfile=renderer.bundle.js",
-    "start": "npm run build:renderer && electron ."
+    "start": "npm run build:renderer && electron .",
+    "package:mac": "npm run build:renderer && electron-builder --mac dmg --arm64"
   },
   "devDependencies": {
     "electron": "latest",
+    "electron-builder": "^26.15.3",
     "esbuild": "^0.28.2",
     "three": "^0.186.0"
+  },
+  "build": {
+    "appId": "com.vinayakpechetti.driftcarpet",
+    "productName": "Drift Car Desktop Pet",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "renderer.bundle.js",
+      "assets/s14/**/*",
+      "README.md",
+      "CREDITS.md",
+      "package.json"
+    ],
+    "mac": {
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["arm64"]
+        }
+      ],
+      "category": "public.app-category.entertainment",
+      "identity": null
+    },
+    "artifactName": "Drift-Car-Desktop-Pet-${version}-${arch}.${ext}"
   }
 }

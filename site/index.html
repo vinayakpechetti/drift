@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10110f">
+  <meta name="description" content="A little 3D drift car that follows your system cursor across the desktop, with tire smoke and skid marks.">
+  <title>Drift Car Desktop Pet</title>
+  <style>
+    :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #10110f; color: #f3f0e8; }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; overflow: hidden; background: radial-gradient(ellipse at 72% 42%, #383422 0, #1c1c17 27%, #10110f 68%); }
+    .track { position: fixed; inset: 0; opacity: .24; pointer-events: none; background: repeating-linear-gradient(164deg, transparent 0 110px, #b5a05f 111px 113px, transparent 114px 224px); mask-image: linear-gradient(90deg, transparent, #000 42%, transparent 92%); }
+    main { position: relative; width: min(1080px, 100%); min-height: 650px; padding: clamp(30px, 7vw, 84px); display: flex; flex-direction: column; justify-content: space-between; }
+    header { display: flex; justify-content: space-between; align-items: center; text-transform: uppercase; letter-spacing: .16em; font-size: 11px; color: #b5b09f; }
+    .badge { border: 1px solid #68634e; border-radius: 99px; padding: 10px 14px; }
+    .hero { max-width: 650px; padding: 54px 0 34px; }
+    .eyebrow { color: #e2c45f; text-transform: uppercase; letter-spacing: .2em; font-size: 12px; font-weight: 700; }
+    h1 { font-size: clamp(54px, 9vw, 104px); line-height: .91; letter-spacing: -.075em; margin: 20px 0 24px; font-weight: 850; }
+    h1 span { color: #e2c45f; }
+    p { color: #b9b6a9; font-size: clamp(16px, 2vw, 19px); line-height: 1.65; max-width: 490px; margin: 0; }
+    .actions { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; margin-top: 34px; }
+    .button { display: inline-flex; min-height: 54px; padding: 0 22px; align-items: center; justify-content: center; border-radius: 5px; color: #17160f; background: #e2c45f; font-weight: 800; text-decoration: none; transition: transform .18s, background .18s; }
+    .button:hover { transform: translateY(-2px); background: #f2d976; }
+    .secondary { color: #dedacd; font-size: 14px; text-decoration-color: #74705e; text-underline-offset: 5px; }
+    footer { display: flex; justify-content: space-between; gap: 20px; color: #827f73; font-size: 12px; line-height: 1.6; }
+    footer a { color: inherit; }
+    @media (max-width: 600px) { main { min-height: 100svh; padding: 28px 24px; } header { align-items: flex-start; gap: 16px; } .badge { font-size: 9px; white-space: nowrap; } footer { flex-direction: column; gap: 8px; } }
+  </style>
+</head>
+<body>
+  <div class="track" aria-hidden="true"></div>
+  <main>
+    <header><span>Drift Car Desktop Pet</span><span class="badge">macOS · Apple silicon</span></header>
+    <section class="hero">
+      <div class="eyebrow">A little more life on your desktop</div>
+      <h1>Make room<br>for <span>drift.</span></h1>
+      <p>A tiny 3D S14 that follows your system cursor across the desktop. Watch it slide, leave tire marks, and puff smoke as it catches up.</p>
+      <div class="actions">
+        <a class="button" href="https://github.com/vinayakpechetti/drift/releases/latest">Download for Mac <span aria-hidden="true">&nbsp;↗</span></a>
+        <a class="secondary" href="https://github.com/vinayakpechetti/drift/releases">View all releases</a>
+      </div>
+    </section>
+    <footer><span>Runs as a desktop app and tracks your system cursor. Quit with ⌘⇧Q.</span><span>Model by MattDoesBlender · <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></span></footer>
+  </main>
+</body>
+</html>
