@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Formula Drift Desktop Pet</title>
+<style>
+*{box-sizing:border-box;user-select:none}html,body{margin:0;width:100%;height:100%;overflow:hidden;background:transparent;pointer-events:none}
+#world{position:relative;width:100%;height:100%;overflow:hidden;perspective:900px}
+#car{position:absolute;width:300px;height:150px;left:0;top:0;transform-origin:50% 70%;will-change:transform;filter:drop-shadow(0 14px 8px rgba(0,0,0,.28))}
+#car svg{width:100%;height:100%;overflow:visible;transform-style:preserve-3d}
+#smoke-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.smoke{position:absolute;width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 35%,rgba(255,255,255,.82),rgba(208,215,222,.54) 48%,rgba(165,174,184,0));filter:blur(2px);animation:smoke 1250ms ease-out forwards}
+@keyframes smoke{0%{opacity:.68;transform:scale(.55)}55%{opacity:.4}100%{opacity:0;transform:translate(var(--dx),-58px) scale(3.3)}}
+.skid{position:absolute;height:3px;width:30px;border-radius:4px;background:rgba(35,39,44,.34);transform-origin:right center;animation:skid 1.2s linear forwards}
+@keyframes skid{to{opacity:0;transform:scaleX(2.3)}}
+</style></head>
+<body><div id="world"><div id="smoke-layer"></div><div id="car">
+<svg viewBox="0 0 300 150" aria-label="Red Formula racing car" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <linearGradient id="red" x2="0" y2="1"><stop stop-color="#ff6263"/><stop offset=".35" stop-color="#e51d31"/><stop offset=".78" stop-color="#a90019"/><stop offset="1" stop-color="#610713"/></linearGradient>
+ <linearGradient id="carbon" x2="0" y2="1"><stop stop-color="#454b55"/><stop offset=".5" stop-color="#141922"/><stop offset="1" stop-color="#05070b"/></linearGradient>
+ <linearGradient id="tire" x2="0" y2="1"><stop stop-color="#333944"/><stop offset=".35" stop-color="#080a0e"/><stop offset="1" stop-color="#20242a"/></linearGradient>
+ <linearGradient id="glass" x2="1" y2="1"><stop stop-color="#d1f4ff"/><stop offset=".35" stop-color="#57849e"/><stop offset="1" stop-color="#101d2d"/></linearGradient>
+ <radialGradient id="rim"><stop stop-color="#bcc2c7"/><stop offset=".25" stop-color="#343a42"/><stop offset=".7" stop-color="#171b20"/><stop offset="1" stop-color="#08090c"/></radialGradient>
+ <filter id="blur"><feGaussianBlur stdDeviation="1.4"/></filter>
+</defs>
+<!-- floor shadow --> <ellipse cx="151" cy="126" rx="120" ry="12" fill="#07101b" opacity=".3" filter="url(#blur)"/>
+<!-- tires, with visible sidewall and machined hubs -->
+<g><ellipse cx="77" cy="102" rx="26" ry="35" fill="#050609"/><ellipse cx="77" cy="102" rx="20" ry="29" fill="url(#tire)"/><ellipse cx="77" cy="102" rx="11" ry="18" fill="url(#rim)"/><path d="M77 86v32m-10-26 20 20m0-20-20 20" stroke="#aeb5bc" stroke-width="2" opacity=".78"/><circle cx="77" cy="102" r="4" fill="#d8dce0"/></g>
+<g><ellipse cx="230" cy="104" rx="29" ry="39" fill="#050609"/><ellipse cx="230" cy="104" rx="23" ry="33" fill="url(#tire)"/><ellipse cx="230" cy="104" rx="13" ry="21" fill="url(#rim)"/><path d="M230 85v38m-12-31 24 24m0-24-24 24" stroke="#b9c0c7" stroke-width="2" opacity=".8"/><circle cx="230" cy="104" r="4" fill="#e2e5e8"/></g>
+<!-- floor, diffuser and front/rear wings -->
+<path d="M30 103 55 98 84 108 222 110 252 99 284 103 276 115 241 119 80 119 46 114Z" fill="#111720" stroke="#414852" stroke-width="2"/>
+<path d="M17 77 62 78 59 85 14 83Z" fill="url(#carbon)" stroke="#858b94" stroke-width="2"/><path d="M11 69 65 70 64 78 10 77Z" fill="#d91a2a"/><path d="M277 81 291 78 290 87 272 91Z" fill="url(#carbon)"/>
+<!-- nose, front wing supports, low sculpted chassis -->
+<path d="M54 79 101 69 145 72 185 78 215 77 253 87 267 96 248 103 213 99 189 91 132 91 105 100 81 99 59 91Z" fill="url(#red)" stroke="#6e0816" stroke-width="2"/>
+<path d="M54 79 101 69 139 73 164 81 137 86 104 86 77 94 59 91Z" fill="#ff4a50" opacity=".72"/>
+<path d="M50 83 25 85 15 91 55 92 83 89 89 84Z" fill="#e42332" stroke="#7d111c" stroke-width="2"/>
+<path d="M31 88 14 91 8 96 49 97 69 92 59 89Z" fill="url(#carbon)" stroke="#777d85" stroke-width="2"/>
+<!-- sidepod and engine cover -->
+<path d="M94 76 118 54 150 48 181 55 208 71 225 87 210 97 185 91 161 86 125 87 99 96 81 91Z" fill="url(#red)" stroke="#850e1c" stroke-width="2"/>
+<path d="M110 74 129 64 158 64 177 76 166 83 132 80Z" fill="#870e1c"/><path d="m111 75 13-7 24 0 9 5-31 2Z" fill="#ff7372" opacity=".7"/>
+<path d="M124 57 139 35 169 34 190 55 181 68 158 61 137 64Z" fill="url(#red)" stroke="#7c101b" stroke-width="2"/>
+<!-- cockpit, halo and driver helmet -->
+<path d="M142 45q4-22 20-22t19 20l-8 13-25 0Z" fill="#161c25" stroke="#bac3cc" stroke-width="3"/>
+<ellipse cx="160" cy="37" rx="12" ry="10" fill="#ffcf37" stroke="#81111b" stroke-width="2"/><path d="M150 36q10-8 21 0l-1 5h-20Z" fill="#111923"/><path d="M145 26q13-9 28 1" fill="none" stroke="#eef2f4" stroke-width="3"/>
+<path d="M140 29 180 48M176 27 145 48M148 27l29 22" stroke="#d9dde1" stroke-width="2.4" fill="none"/>
+<!-- vents, sponsor-like panels, highlights -->
+<path d="m193 73 12 5-5 9-12-5Zm8 2 9 5-3 5-9-5Z" fill="#242a33"/><path d="M216 82q18 2 31 10" fill="none" stroke="#ffb2ad" stroke-width="2" opacity=".7"/>
+<path d="M93 89 108 85l-8 11-13 2Z" fill="#f5d949"/><path d="M186 83 202 87 214 95" fill="none" stroke="#f5d949" stroke-width="3"/>
+<path d="M20 73h45v5H20Zm257 4 16-3v5l-16 3Z" fill="#fff"/><path d="M22 73h16v5H22Z" fill="#e62939"/>
+<!-- suspension arms and front-wheel steering detail -->
+<path d="m61 82 13 14m6-14L67 99m148-12 13 12m7-15-11 20" stroke="#10141a" stroke-width="3"/>
+<circle cx="53" cy="84" r="3" fill="#fff3c6"/><circle cx="52" cy="84" r="7" fill="#fff3c6" opacity=".22"/>
+<circle cx="39" cy="93" r="3" fill="#ff263f"/><circle cx="39" cy="93" r="7" fill="#ff263f" opacity=".3"/>
+</svg></div></div>
+<script>
+const car=document.getElementById('car'), smokeLayer=document.getElementById('smoke-layer'), world=document.getElementById('world');
+const cw=300,ch=150;let x=80,y=100,heading=.52,speed=260,drift=0,last=performance.now(),target=null,nextTarget=0,smokeClock=0;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+function chooseTarget(){const w=world.clientWidth,h=world.clientHeight,pad=90;target={x:pad+Math.random()*Math.max(1,w-cw-pad*2),y:pad+Math.random()*Math.max(1,h-ch-pad*2)};nextTarget=2.6+Math.random()*2.4}
+function puff(px,py){const s=document.createElement('i');s.className='smoke';s.style.left=`${px}px`;s.style.top=`${py}px`;s.style.setProperty('--dx',`${Math.random()*50-25}px`);smokeLayer.appendChild(s);setTimeout(()=>s.remove(),1300)}
+function mark(px,py){const e=document.createElement('i');e.className='skid';e.style.left=`${px}px`;e.style.top=`${py}px`;e.style.transform=`rotate(${Math.random()*30-15}deg)`;smokeLayer.appendChild(e);setTimeout(()=>e.remove(),1250)}
+function animate(now){const dt=Math.min((now-last)/1000,.04);last=now;const w=world.clientWidth,h=world.clientHeight;
+ if(!target||nextTarget<=0)chooseTarget();nextTarget-=dt;
+ let dx=target.x-x,dy=target.y-y,dist=Math.hypot(dx,dy);if(dist<55){chooseTarget();dx=target.x-x;dy=target.y-y;dist=Math.hypot(dx,dy)}
+ const desired=Math.atan2(dy,dx);let diff=Math.atan2(Math.sin(desired-heading),Math.cos(desired-heading));
+ const turning=Math.abs(diff)>.28;drift+=(turning?dt*1.9:-dt*1.25);drift=clamp(drift,0,1);
+ // The nose points into the turn while the rear steps outward: a controlled yaw, never a flip.
+ const yaw=clamp(diff,-.9,.9)*drift;heading+=clamp(diff,-dt*1.25,dt*1.25);
+ const stride=Math.min(speed*dt,dist);x+=Math.cos(heading)*stride;y+=Math.sin(heading)*stride;
+ x=clamp(x,8,Math.max(8,w-cw-8));y=clamp(y,8,Math.max(8,h-ch-8));
+ const faceRight=Math.cos(heading)>=0, mirror=faceRight?1:-1;
+ car.style.transform=`translate3d(${x}px,${y}px,0) scaleX(${mirror}) rotateZ(${yaw*mirror}rad) rotateY(${(faceRight?1:-1)*(0.08+drift*.16)}rad) scale(${1+drift*.035})`;
+ if(drift>.28){smokeClock+=dt;while(smokeClock>.085){smokeClock-=.085;puff(x+(faceRight?68:212),y+105);puff(x+(faceRight?96:184),y+105)}if(Math.random()<dt*2.2)mark(x+(faceRight?67:210),y+111)}
+ requestAnimationFrame(animate)}
+chooseTarget();requestAnimationFrame(animate);
+</script></body></html>
