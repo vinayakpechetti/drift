@@ -1,0 +1,11 @@
+Model Information:
+* title:	unpacked-kyu_s14_urasproj
+* source:	https://sketchfab.com/3d-models/unpacked-kyu-s14-urasproj-7225976fd4304224a9193e2bdad94454
+* author:	MattDoesBlender (https://sketchfab.com/MattDoesBlender)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "unpacked-kyu_s14_urasproj" (https://sketchfab.com/3d-models/unpacked-kyu-s14-urasproj-7225976fd4304224a9193e2bdad94454) by MattDoesBlender (https://sketchfab.com/MattDoesBlender) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)

@@ -1,0 +1,15 @@
+{
+  "name": "drift-car-desktop-pet",
+  "version": "1.0.0",
+  "description": "A transparent macOS desktop pet that drives and drifts across the bottom of the screen.",
+  "main": "main.js",
+  "scripts": {
+    "build:renderer": "esbuild renderer.js --bundle --format=iife --platform=browser --outfile=renderer.bundle.js",
+    "start": "npm run build:renderer && electron ."
+  },
+  "devDependencies": {
+    "electron": "latest",
+    "esbuild": "^0.28.2",
+    "three": "^0.186.0"
+  }
+}
